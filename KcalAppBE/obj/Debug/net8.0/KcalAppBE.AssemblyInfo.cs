@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KcalAppBE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5234e379827f24d79c02b9809629ce7a8cd64da")]
 [assembly: System.Reflection.AssemblyProductAttribute("KcalAppBE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KcalAppBE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

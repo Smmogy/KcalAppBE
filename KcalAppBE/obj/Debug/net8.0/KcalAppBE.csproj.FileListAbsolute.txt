@@ -151,3 +151,4 @@ C:\Users\zanzu\source\repos\KcalAppBE\KcalAppBE\obj\Debug\net8.0\refint\KcalAppB
 C:\Users\zanzu\source\repos\KcalAppBE\KcalAppBE\obj\Debug\net8.0\KcalAppBE.pdb
 C:\Users\zanzu\source\repos\KcalAppBE\KcalAppBE\obj\Debug\net8.0\KcalAppBE.genruntimeconfig.cache
 C:\Users\zanzu\source\repos\KcalAppBE\KcalAppBE\obj\Debug\net8.0\ref\KcalAppBE.dll
+C:\Users\zanzu\source\repos\KcalAppBE\KcalAppBE\obj\Debug\net8.0\KcalAppBE.sourcelink.json

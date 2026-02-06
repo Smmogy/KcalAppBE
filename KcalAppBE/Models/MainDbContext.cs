@@ -5,7 +5,6 @@ namespace KcalAppBE.Models
     public class MainDbContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Days> Days { get; set; }
         public virtual DbSet<Consumables> Consumables { get; set; }
 
         public MainDbContext() { }

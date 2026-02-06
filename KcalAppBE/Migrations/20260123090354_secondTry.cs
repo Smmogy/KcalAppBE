@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KcalAppBE.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class secondTry : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,30 +25,12 @@ namespace KcalAppBE.Migrations
                     ProfessorSex = table.Column<string>(type: "text", nullable: false),
                     Age = table.Column<string>(type: "text", nullable: false),
                     Weight = table.Column<int>(type: "integer", nullable: true),
-                    Hight = table.Column<int>(type: "integer", nullable: true)
+                    Hight = table.Column<int>(type: "integer", nullable: true),
+                    DayDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Days",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    dateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Days", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Days_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -61,26 +43,21 @@ namespace KcalAppBE.Migrations
                     Kcal = table.Column<int>(type: "integer", nullable: false),
                     Protein = table.Column<int>(type: "integer", nullable: true),
                     Carbs = table.Column<int>(type: "integer", nullable: true),
-                    DaysId = table.Column<int>(type: "integer", nullable: true)
+                    UserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Consumables", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Consumables_Days_DaysId",
-                        column: x => x.DaysId,
-                        principalTable: "Days",
+                        name: "FK_Consumables_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consumables_DaysId",
+                name: "IX_Consumables_UserId",
                 table: "Consumables",
-                column: "DaysId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Days_UserId",
-                table: "Days",
                 column: "UserId");
         }
 
@@ -89,9 +66,6 @@ namespace KcalAppBE.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Consumables");
-
-            migrationBuilder.DropTable(
-                name: "Days");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KcalAppBE.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20260122125639_init")]
-    partial class init
+    [Migration("20260123090354_secondTry")]
+    partial class secondTry
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,41 +40,20 @@ namespace KcalAppBE.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("DaysId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Kcal")
                         .HasColumnType("integer");
 
                     b.Property<int?>("Protein")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("DaysId");
-
-                    b.ToTable("Consumables");
-                });
-
-            modelBuilder.Entity("KcalAppBE.Models.Days", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime>("dateTime")
-                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Days");
+                    b.ToTable("Consumables");
                 });
 
             modelBuilder.Entity("KcalAppBE.Models.User", b =>
@@ -88,6 +67,9 @@ namespace KcalAppBE.Migrations
                     b.Property<string>("Age")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("DayDateTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -122,26 +104,14 @@ namespace KcalAppBE.Migrations
 
             modelBuilder.Entity("KcalAppBE.Models.Consumables", b =>
                 {
-                    b.HasOne("KcalAppBE.Models.Days", null)
-                        .WithMany("ConsumablesDate")
-                        .HasForeignKey("DaysId");
-                });
-
-            modelBuilder.Entity("KcalAppBE.Models.Days", b =>
-                {
                     b.HasOne("KcalAppBE.Models.User", null)
-                        .WithMany("DaysTime")
+                        .WithMany("ConsumablesUsed")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("KcalAppBE.Models.Days", b =>
-                {
-                    b.Navigation("ConsumablesDate");
                 });
 
             modelBuilder.Entity("KcalAppBE.Models.User", b =>
                 {
-                    b.Navigation("DaysTime");
+                    b.Navigation("ConsumablesUsed");
                 });
 #pragma warning restore 612, 618
         }
