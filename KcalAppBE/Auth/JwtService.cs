@@ -17,7 +17,7 @@ namespace KcalAppBE.Auth
         private string _token;
         public JwtService(IConfigurationService configurationService)
         {
-            this._token- = configurationService.Get<string>("JwtSecret");
+            this._token = configurationService.Get<string>("JwtSecret");
         }
         public async Task<(bool valid, JwtSecurityToken? token)> ValidateToken(string token, bool validateLifetime = true)
         {
@@ -59,7 +59,7 @@ namespace KcalAppBE.Auth
         public string GenerateToken(TimeSpan lifespan, params Claim[] claims)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_t);
+            var key = Encoding.ASCII.GetBytes(_token);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
